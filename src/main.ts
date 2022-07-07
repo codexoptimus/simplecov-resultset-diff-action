@@ -3,6 +3,8 @@ import * as fs from 'fs'
 import * as github from '@actions/github'
 import * as core from '@actions/core'
 import markdownTable from 'markdown-table'
+import replaceComment from '@aki77/actions-replace-comment'
+
 import {
   ResultSet,
   Coverage,
@@ -120,9 +122,8 @@ ${content}
 `
 
     /**
-     * Publish a comment in the PR with the diff result.
+     * Replace or create a comment in the PR with the diff result.
      */
-    const octokit = github.getOctokit(core.getInput('token'))
 
     const pullRequestId = github.context.issue.number
     if (!pullRequestId) {
@@ -131,7 +132,8 @@ ${content}
       return
     }
 
-    await octokit.issues.createComment({
+    await replaceComment({
+      token: core.getInput('token', { required: true }),
       owner: github.context.repo.owner,
       repo: github.context.repo.repo,
       issue_number: pullRequestId,
