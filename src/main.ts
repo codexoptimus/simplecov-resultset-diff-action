@@ -132,7 +132,7 @@ ${content}
       return
     }
 
-    core.info(message)
+    core.debug(message)
 
     await replaceComment({
       token: core.getInput('token', { required: true }),
