@@ -132,6 +132,8 @@ ${content}
       return
     }
 
+    core.info(message)
+
     await replaceComment({
       token: core.getInput('token', { required: true }),
       owner: github.context.repo.owner,
