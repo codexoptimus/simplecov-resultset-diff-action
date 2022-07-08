@@ -135,7 +135,7 @@ ${content}
     core.debug(message)
 
     await replaceComment({
-      token: core.getInput('token', { required: true }),
+      token: core.getInput('token', {required: true}),
       owner: github.context.repo.owner,
       repo: github.context.repo.repo,
       issue_number: pullRequestId,
